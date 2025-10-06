@@ -1061,6 +1061,11 @@ body {
         margin-top: 2rem;
     }
 
+    /* Hide hero image on mobile: show only text and button */
+    .slide-image {
+        display: none !important;
+    }
+
     .slide-arrow {
         width: 40px;
         height: 40px;

@@ -149,6 +149,43 @@ const products = [
             XXL: "https://buy.stripe.com/28E5kEcdi0CB0OH1S58IU0n"
         }
     },
+
+    {
+        id: 6,
+        name: 'AT Rock Cat Tee Y2K Punk Streetwear',
+        category: 'T-Shirt',
+        price: 19.99,
+        isNew: true,
+        images: ["products-image/AT Rock Cat/cattee-white.avif",
+                 "products-image/AT Rock Cat/cattee-white-back.avif",
+                 "products-image/AT Rock Cat/cattee-black.avif",
+                 "products-image/AT Rock Cat/cattee-black-back.avif",
+                 "products-image/AT Rock Cat/cattee-blue.avif",
+                 "products-image/AT Rock Cat/cattee-bule-back.avif",
+        ],
+        descriptionHtml: `
+        <p>Turn up your street style with the AT Rock Cat Graphic Tee, a bold fusion of Y2K nostalgia and rebellious punk energy. Featuring a unique “Rock Cat” print inspired by underground culture, this tee adds the perfect edge to any casual outfit.</p>
+        <p>Made from soft, breathable cotton, it delivers all-day comfort while keeping your look effortlessly cool. Whether you’re out with friends or styling your next streetwear fit, this tee brings attitude, creativity, and confidence to your vibe.</p>
+    `,
+    // Optional: product-specific details list
+    detailsHtml: `
+        <li><strong> Design:</strong>Y2K punk aesthetic with a bold Rock Cat graphic</li>
+        <li><strong>Fit:</strong> True to size with a relaxed, streetwear silhouette</li>
+        <li><strong>Fabric:</strong>Soft and durable cotton blend for comfort and breathability </li>
+        <li><strong>Care:</strong>Machine washable, easy to maintain</li>
+        <li><strong>Season:</strong>Perfect for spring and summer wear</li>
+
+    `,
+        pageUrl: "Products/AT Rock Cat Tee  Y2K Punk Streetwear.html",
+        stripeLinks: {
+            XS: "",
+            S: "",
+            M: "https://buy.stripe.com/6oU7sM3GM853cxp54h8IU0s",
+            L: "https://buy.stripe.com/9B63cwelqdpncxp54h8IU0t",
+            XL: "https://buy.stripe.com/cNifZi3GM5WV9ld0O18IU0u",
+            XXL: "https://buy.stripe.com/eVqcN61yE9972WP1S58IU0v"
+        }
+    },
 ];
 
 // ========================================

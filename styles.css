@@ -1276,3 +1276,13 @@ body {
 .nav-logo svg {
     max-width: 28px;
 }
+
+
+.price-discount {
+    text-decoration: line-through;
+    background: black;
+    color: white;
+    padding:3px;
+    border-radius:4px;
+    font-weight: 600;
+  }

@@ -1,6 +1,3 @@
-// ========================================
-// 1. داده محصولات
-// ========================================
 const products = [
     {
         id: 1,
@@ -14,7 +11,6 @@ const products = [
             "products-image/Trendy American-Style Heavyweight Hoodie. Versatile Loose-Fit Casual Couple's Top for Fall/1 (3).avif",   
         ],
         pageUrl: "product.html",
-        // Stripe payment links per size (fill with your actual links)
         stripeLinks: {
             XS: "",
             S: "",
@@ -132,7 +128,6 @@ const products = [
         <p>Bring laid-back American style to your cool-weather wardrobe with our Loose-Fit Plaid Pullover Hoodie Jacket — the perfect fusion of comfort, warmth, and street-smart style. Featuring a bold plaid pattern and relaxed fit, this hoodie jacket delivers effortless vibes with a rugged, timeless edge.</p>
         <p>Whether you're layering up for chilly days or making a casual statement, this piece is a go-to essential for fall and beyond.</p>
     `,
-    // Optional: product-specific details list
     detailsHtml: `
         <li><strong> Bold plaid design:</strong> Inspired by classic American workwear</li>
         <li><strong>Fit:</strong> True to size</li>
@@ -167,7 +162,6 @@ const products = [
         <p>Turn up your street style with the AT Rock Cat Graphic Tee, a bold fusion of Y2K nostalgia and rebellious punk energy. Featuring a unique “Rock Cat” print inspired by underground culture, this tee adds the perfect edge to any casual outfit.</p>
         <p>Made from soft, breathable cotton, it delivers all-day comfort while keeping your look effortlessly cool. Whether you’re out with friends or styling your next streetwear fit, this tee brings attitude, creativity, and confidence to your vibe.</p>
     `,
-    // Optional: product-specific details list
     detailsHtml: `
         <li><strong> Design:</strong>Y2K punk aesthetic with a bold Rock Cat graphic</li>
         <li><strong>Fit:</strong> True to size with a relaxed, streetwear silhouette</li>
@@ -186,11 +180,45 @@ const products = [
             XXL: "https://buy.stripe.com/eVqcN61yE9972WP1S58IU0v"
         }
     },
+
+    {
+        id: 7,
+        name: 'Mens Fake Two-Piece Sweater with Shirt Collar',
+        category: 'Sweater',
+        price: 17.99,
+        oldPrice: 21.99,
+        isNew: true,
+        images: ["products-image/Mens Fake Two-Piece Sweater with Shirt Collar/shirt collar.jpg",
+                 "products-image/Mens Fake Two-Piece Sweater with Shirt Collar/shirt collar-1.jpg",
+                 "products-image/Mens Fake Two-Piece Sweater with Shirt Collar/3.jpg",
+                 "products-image/Mens Fake Two-Piece Sweater with Shirt Collar/4.jpg",
+                 "products-image/Mens Fake Two-Piece Sweater with Shirt Collar/5.jpg",
+                 "products-image/Mens Fake Two-Piece Sweater with Shirt Collar/6.jpg",
+        ],
+        descriptionHtml: `
+        <p>Turn up your street style with the AT Rock Cat Graphic Tee, a bold fusion of Y2K nostalgia and rebellious punk energy. Featuring a unique “Rock Cat” print inspired by underground culture, this tee adds the perfect edge to any casual outfit.</p>
+        <p>Made from soft, breathable cotton, it delivers all-day comfort while keeping your look effortlessly cool. Whether you’re out with friends or styling your next streetwear fit, this tee brings attitude, creativity, and confidence to your vibe.</p>
+    `,
+    detailsHtml: `
+        <li><strong> Design:</strong>Y2K punk aesthetic with a bold Rock Cat graphic</li>
+        <li><strong>Fit:</strong> True to size with a relaxed, streetwear silhouette</li>
+        <li><strong>Fabric:</strong>Soft and durable cotton blend for comfort and breathability </li>
+        <li><strong>Care:</strong>Machine washable, easy to maintain</li>
+        <li><strong>Season:</strong>Perfect for spring and summer wear</li>
+
+    `,
+        pageUrl: "Products/Mens Fake Two-Piece Sweater with Shirt Collar.html",
+        stripeLinks: {
+            XS: "",
+            S: "",
+            M: "https://buy.stripe.com/dRm3cw6SY4SR1SL9kx8IU0w",
+            L: "https://buy.stripe.com/aFacN63GMclj691cwJ8IU0x",
+            XL: "https://buy.stripe.com/cNifZi3GM5WV9ld0O18IU0u",
+            XXL: "https://buy.stripe.com/eVqcN61yE9972WP1S58IU0v"
+        }
+    },
 ];
 
-// ========================================
-// اسلایدشو محصول در product.html (مجزا از Hero)
-// ========================================
 function buildProductSlideshow(product) {
     const container = document.getElementById('productImageMain');
     if (!container) return;
@@ -198,11 +226,9 @@ function buildProductSlideshow(product) {
     const images = (product.images && product.images.length > 0)
         ? product.images
         : [
-            // اگر تصویری موجود نبود از یک جای‌نگهدار استفاده می‌کنیم
             'products-image/placeholder.jpg'
         ];
 
-    // Adjust relative paths when this page is inside the Products/ subdirectory
     const inProductsSubdir = window.location.pathname.includes('Products/');
     const resolvedImages = images.map(src => inProductsSubdir ? `../${src}` : src);
 
@@ -241,7 +267,6 @@ function initProductSlideshow(root) {
     const nextBtn = root.querySelector('.p-next');
     const indicatorsWrap = root.querySelector('.p-indicators');
 
-    // ساخت اندیکاتورها
     indicatorsWrap.innerHTML = '';
     slides.forEach((_, i) => {
         const dot = document.createElement('div');
@@ -273,7 +298,6 @@ function initProductSlideshow(root) {
     if (prevBtn) prevBtn.addEventListener('click', prev);
     if (nextBtn) nextBtn.addEventListener('click', next);
 
-    // اتوپلی ملایم
     let timer = setInterval(next, 5000);
     root.addEventListener('mouseenter', () => clearInterval(timer));
     root.addEventListener('mouseleave', () => { timer = setInterval(next, 5000); });
@@ -281,9 +305,6 @@ function initProductSlideshow(root) {
     update();
 }
 
-// ========================================
-// 2. ساخت کارت محصول
-// ========================================
 function createProductCard(product) {
     const imageHTML = product.images && product.images.length > 0 
         ? `<img src="${product.images[0]}" alt="${product.name}">`
@@ -291,6 +312,13 @@ function createProductCard(product) {
     
     const productLink = product.pageUrl || 'product.html';
     
+    const priceHtml = (product.oldPrice && product.oldPrice > product.price)
+        ? `<div class="product-card-prices">
+                <span class="product-card-old-price">$${product.oldPrice.toFixed(2)}</span>
+                <span class="product-card-price">$${product.price.toFixed(2)}</span>
+           </div>`
+        : `<div class="product-card-prices"><span class="product-card-price">$${product.price.toFixed(2)}</span></div>`;
+
     return `
         <div class="product-card" data-id="${product.id}" data-name="${product.name.toLowerCase()}">
             <div class="product-image">
@@ -300,7 +328,7 @@ function createProductCard(product) {
                 <h3 class="product-card-name">${product.name}</h3>
                 <p class="product-card-category">${product.category}</p>
                 <div class="product-card-footer">
-                    <span class="product-card-price">$${product.price.toFixed(2)}</span>
+                    ${priceHtml}
                     <a href="${productLink}" class="product-card-button">Buy</a>
                 </div>
             </div>
@@ -308,9 +336,7 @@ function createProductCard(product) {
     `;
 }
 
-// ========================================
-// 3. نمایش محصولات در صفحه اصلی
-// ========================================
+
 function initProducts() {
     const newArrivalsScroll = document.getElementById('newArrivalsScroll');
     const productsGrid = document.getElementById('productsGrid');
@@ -324,13 +350,9 @@ function initProducts() {
         productsGrid.innerHTML = products.map(createProductCard).join('');
     }
 
-    // Bind click handlers so selecting a product stores its id and navigates to its page
     bindProductCardClicks();
 }
 
-// ========================================
-// 4. نمایش جزئیات محصول در product.html
-// ========================================
 function initProductDetail() {
     let productId = parseInt(localStorage.getItem('selectedProduct'));
 
@@ -351,7 +373,17 @@ function initProductDetail() {
 
     document.getElementById('productName').textContent = product.name;
     document.getElementById('productCategory').textContent = product.category;
-    document.getElementById('productPrice').textContent = `$${product.price.toFixed(2)}`;
+    const priceContainer = document.getElementById('productPrice');
+    if (priceContainer) {
+        if (product.oldPrice && product.oldPrice > product.price) {
+            priceContainer.innerHTML = `
+                <span class="old-price">$${product.oldPrice.toFixed(2)}</span>
+                <span class="new-price">$${product.price.toFixed(2)}</span>
+            `;
+        } else {
+            priceContainer.textContent = `$${product.price.toFixed(2)}`;
+        }
+    }
 
     // Only overwrite description if the product explicitly provides it.
     // Otherwise, keep the description written in each HTML page.
@@ -374,10 +406,8 @@ function initProductDetail() {
         }
     }
 
-    // ساخت اسلایدشو محصول در بخش تصویر اصلی
     buildProductSlideshow(product);
 
-    // محصولات مرتبط
     const relatedProducts = products.filter(p => p.id !== productId).slice(0, 4);
     const relatedContainer = document.getElementById('relatedProducts');
     if (relatedContainer) {
@@ -412,11 +442,7 @@ function initProductDetail() {
     }
 }
 
-// ========================================
-// Helpers: bind product card interactions
-// ========================================
 function bindProductCardClicks() {
-    // Click anywhere on the card navigates to its page and sets selectedProduct
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', (e) => {
             // Avoid double handling when clicking the inner button
@@ -446,9 +472,7 @@ function bindProductCardClicks() {
     });
 }
 
-// ========================================
-// 5. اسلایدشو (Hero Slideshow)
-// ========================================
+
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
@@ -499,9 +523,7 @@ function initSlideshow() {
     setInterval(nextSlide, 5000);
 }
 
-// ========================================
-// 6. جستجو
-// ========================================
+
 function initSearch() {
     const searchToggle = document.querySelector('.search-toggle');
     const searchOverlay = document.querySelector('.search-overlay');
@@ -544,9 +566,7 @@ function filterProducts(query) {
     });
 }
 
-// ========================================
-// 7. اسکرول افقی محصولات
-// ========================================
+
 function initScrollControls() {
     const scrollContainers = document.querySelectorAll('.products-scroll');
 
@@ -584,9 +604,7 @@ function initScrollControls() {
     });
 }
 
-// ========================================
-// 8. سبد خرید
-// ========================================
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function updateCartCount() {
@@ -596,9 +614,7 @@ function updateCartCount() {
     }
 }
 
-// ========================================
-// 9. انتخاب سایز
-// ========================================
+
 function initSizeSelector() {
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('size-option')) {
@@ -610,9 +626,7 @@ function initSizeSelector() {
     });
 }
 
-// ========================================
-// 10. دکمه خرید
-// ========================================
+
 function initBuyButton() {
     const buyNowButton = document.getElementById('buyNowButton');
     if (!buyNowButton) return;
@@ -630,9 +644,7 @@ function initBuyButton() {
     });
 }
 
-// ========================================
-// 11. اسکرول نرم
-// ========================================
+
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -653,9 +665,7 @@ function initSmoothScroll() {
     });
 }
 
-// ========================================
-// 12. لینک فعال در منو
-// ========================================
+
 function updateActiveNav() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -683,9 +693,8 @@ function updateActiveNav() {
     });
 }
 
-// ========================================
-// 13. راه‌اندازی همه چیز
-// ========================================
+
+
 document.addEventListener('DOMContentLoaded', () => {
     initProducts();
     initSlideshow();
@@ -706,9 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('scroll', updateActiveNav);
 
-// ========================================
-// 14. مخفی/نمایش گالری هنگام اسکرول
-// ========================================
+
 function initHideGalleryOnScroll() {
     const gallery = document.querySelector('.product-gallery');
     if (!gallery) return;

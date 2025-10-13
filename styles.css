@@ -459,6 +459,19 @@ body {
     align-items: center;
 }
 
+/* Price group on product cards (old + new price) */
+.product-card-prices {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.product-card-old-price {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
 .product-card-price {
     font-size: 1.25rem;
     font-weight: 600;
@@ -864,6 +877,20 @@ body {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 8px; /* keep old/new prices close */
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.new-price {
+    color: var(--text-primary);
+    font-weight: 700;
 }
 
 .product-description {
@@ -1084,17 +1111,25 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1rem;
     }
-
     .product-card {
         min-width: 250px;
     }
 
+    /* Tighter price spacing on mobile */
+    .product-card-prices {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .product-price {
+        display: flex;
+        gap: 6px;
+    }
     /* Keep the product image sticky on smaller phones too */
     .product-gallery {
         position: sticky;
         top: 64px;
     }
-
     .reviews-section,
     .contact-section {
         padding: 2rem 1rem;
